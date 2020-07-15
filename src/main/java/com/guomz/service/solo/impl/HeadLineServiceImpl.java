@@ -3,7 +3,7 @@ package com.guomz.service.solo.impl;
 import com.guomz.service.solo.HeadLineService;
 import com.guomz.entity.bo.HeadLine;
 import com.guomz.entity.dto.Result;
-import com.guomz.simpleframework.annotations.Service;
+import com.guomz.simpleframework.core.annotations.Service;
 
 import java.util.List;
 @Service

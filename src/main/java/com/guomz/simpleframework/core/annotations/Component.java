@@ -1,10 +1,9 @@
-package com.guomz.simpleframework.annotations;
+package com.guomz.simpleframework.core.annotations;
 
 import java.lang.annotation.*;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Component
-public @interface Service {
+public @interface Component {
 }

@@ -3,7 +3,7 @@ package com.guomz.controller.frontend;
 import com.guomz.entity.dto.MainPageInfoDto;
 import com.guomz.entity.dto.Result;
 import com.guomz.service.combine.HeadLineShopCategoryCombineService;
-import com.guomz.simpleframework.annotations.Controller;
+import com.guomz.simpleframework.core.annotations.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

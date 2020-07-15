@@ -1,4 +1,4 @@
-package com.guomz.simpleframework.annotations;
+package com.guomz.simpleframework.core.annotations;
 
 import java.lang.annotation.*;
 
@@ -6,5 +6,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-public @interface Controller {
+public @interface Service {
 }

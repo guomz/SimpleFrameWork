@@ -3,7 +3,7 @@ package com.guomz.controller.superadmin;
 import com.guomz.service.solo.HeadLineService;
 import com.guomz.entity.bo.HeadLine;
 import com.guomz.entity.dto.Result;
-import com.guomz.simpleframework.annotations.Controller;
+import com.guomz.simpleframework.core.annotations.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

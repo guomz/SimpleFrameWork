@@ -1,7 +1,11 @@
 package com.guomz.simpleframework.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.io.FileFilter;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +13,7 @@ import java.util.Set;
 /**
  * 根据包名获取class字节码文件从而加载类
  */
+@Slf4j
 public class ClassUtil {
 
     /**
@@ -26,7 +31,7 @@ public class ClassUtil {
         try {
             packageFile = new File(packagePath.getPath());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("获取包名对应的文件引用失败");
             throw new RuntimeException("获取包名的文件引用失败");
         }
         //当前路径为文件夹则进行class文件提取
@@ -35,6 +40,23 @@ public class ClassUtil {
             extractClassFile(packageFile, classSet, packageName);
         }
         return classSet;
+    }
+
+    /**
+     * 根据类的无参构造函数获取类的实例对象
+     * @param clazz
+     * @param accessFlag
+     * @return
+     */
+    public static<T> T getNewInstance(Class<?> clazz, boolean accessFlag){
+        try {
+            Constructor constructor = clazz.getDeclaredConstructor();
+            constructor.setAccessible(accessFlag);
+            return (T) constructor.newInstance();
+        } catch (Exception e) {
+            log.error("获取类实例失败");
+            throw new RuntimeException("获取类实例失败");
+        }
     }
 
     /**
@@ -61,6 +83,7 @@ public class ClassUtil {
         });
 
         if (files == null){
+            log.error("获取文件列表失败");
             throw new RuntimeException("获取子文件失败");
         }
 
@@ -76,12 +99,16 @@ public class ClassUtil {
      * @return
      */
     private static Class<?> getClassFile(File path, String packageName) {
+        //获取文件的绝对路径
         String abFilePath = path.getAbsolutePath();
+        //替换文件分隔符
         abFilePath = abFilePath.replace(File.separator, ".");
+        //得到包含包名的全类名
         String fullClassPath = abFilePath.substring(abFilePath.indexOf(packageName), abFilePath.lastIndexOf(".class"));
         try {
             return Class.forName(fullClassPath);
         } catch (ClassNotFoundException e) {
+            log.error("根据类全名加载类失败");
             throw new RuntimeException("类加载失败");
         }
     }
@@ -96,6 +123,6 @@ public class ClassUtil {
     }
 
     public static void main(String[] args) {
-        extractPackageClass("com.guomz.simpleframework.entity");
+        extractPackageClass("com.guomz.service");
     }
 }
