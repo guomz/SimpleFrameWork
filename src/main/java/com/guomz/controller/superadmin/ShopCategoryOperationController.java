@@ -1,13 +1,14 @@
 package com.guomz.controller.superadmin;
 
+import com.guomz.service.solo.ShopCategoryService;
 import com.guomz.entity.bo.ShopCategory;
 import com.guomz.entity.dto.Result;
-import com.guomz.service.solo.ShopCategoryService;
+import com.guomz.simpleframework.annotations.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
+@Controller
 public class ShopCategoryOperationController {
 
     private ShopCategoryService shopCategoryService;

@@ -7,9 +7,10 @@ import com.guomz.entity.dto.Result;
 import com.guomz.service.combine.HeadLineShopCategoryCombineService;
 import com.guomz.service.solo.HeadLineService;
 import com.guomz.service.solo.ShopCategoryService;
+import com.guomz.simpleframework.annotations.Service;
 
 import java.util.List;
-
+@Service
 public class HeadLineShopCategoryCombineServiceImpl implements HeadLineShopCategoryCombineService {
 
     private HeadLineService headLineService;
