@@ -10,6 +10,7 @@ import java.util.Set;
 
 /**
  * 用于实现依赖注入
+ * 扫描被BeanContainer管理的bean将被注解标注的属性进行注入
  */
 @Slf4j
 public class DependencyInjector {

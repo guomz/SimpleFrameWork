@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 作为存放bean的容器，模拟spring的ioc容器
+ * 判断被ClassUtil加载的类有无被注解标注，将标注的的类实例化存入容器
  */
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)//私有构造器
