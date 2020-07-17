@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.FileFilter;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +31,7 @@ public class ClassUtil {
         try {
             packageFile = new File(packagePath.getPath());
         } catch (Exception e) {
-            log.error("获取包名对应的文件引用失败");
+            log.error("获取包名对应的文件引用失败", e);
             throw new RuntimeException("获取包名的文件引用失败");
         }
         //当前路径为文件夹则进行class文件提取
@@ -54,8 +54,24 @@ public class ClassUtil {
             constructor.setAccessible(accessFlag);
             return (T) constructor.newInstance();
         } catch (Exception e) {
-            log.error("获取类实例失败");
+            log.error("获取类实例失败", e);
             throw new RuntimeException("获取类实例失败");
+        }
+    }
+
+    /**
+     * 将实例注入给定的属性，将value放入target的field中
+     * @param field 属性
+     * @param target 被注入的实例
+     * @param value 注入的实例
+     * @param isAccessable
+     */
+    public static void setFieldValue(Field field, Object target, Object value, boolean isAccessable){
+        field.setAccessible(isAccessable);
+        try {
+            field.set(target, value);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 
@@ -108,7 +124,7 @@ public class ClassUtil {
         try {
             return Class.forName(fullClassPath);
         } catch (ClassNotFoundException e) {
-            log.error("根据类全名加载类失败");
+            log.error("根据类全名加载类失败", e);
             throw new RuntimeException("类加载失败");
         }
     }

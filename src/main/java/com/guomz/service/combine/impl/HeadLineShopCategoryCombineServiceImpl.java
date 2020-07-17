@@ -8,12 +8,15 @@ import com.guomz.service.combine.HeadLineShopCategoryCombineService;
 import com.guomz.service.solo.HeadLineService;
 import com.guomz.service.solo.ShopCategoryService;
 import com.guomz.simpleframework.core.annotations.Service;
+import com.guomz.simpleframework.core.inject.annotations.Autowired;
 
 import java.util.List;
 @Service
 public class HeadLineShopCategoryCombineServiceImpl implements HeadLineShopCategoryCombineService {
 
+    @Autowired(value = "HeadLineServiceImpl")
     private HeadLineService headLineService;
+    @Autowired
     private ShopCategoryService shopCategoryService;
 
     /**
